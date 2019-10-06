@@ -1,7 +1,7 @@
-library(httr)
-library(leaflet)
-library(rjson)
-library(jsonlite)
+#library(httr)
+#library(leaflet)
+#library(rjson)
+#library(jsonlite)
 
 #' Draw the municipality boundaries
 #' @param dataset one of the following (fi-8, ch-8, no-4, no-7, dk-4, se-4, se-7, us-4, gl-7,world-2)
