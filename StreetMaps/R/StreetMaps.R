@@ -14,7 +14,7 @@
 #' Maps_api("se-7, 2015")}
 
 Maps_api <- function(dataset, year=2010) {
-  path<-sprintf("/v2/%s/geo/%d", dataset, year)
+  path<-sprintf("/v2/%s/geo/%s", dataset, year)
   url <- modify_url("http://api.thenmap.net", path = path)
   ua <- user_agent("http://github.com/KarDeMumman/StreetMaps")
   resp<-GET(url,ua)

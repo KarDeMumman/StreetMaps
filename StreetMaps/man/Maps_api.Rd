@@ -4,7 +4,7 @@
 \alias{Maps_api}
 \title{Retrieve the municipality/country boundaries from the year specified (default 2010)}
 \usage{
-Maps_api(dataset, year = 2010)
+Maps_api(dataset, year = "2010")
 }
 \arguments{
 \item{dataset}{one of the following (fi-8, ch-8, dk-7, se-7, us-4, gl-7, world-2)}
