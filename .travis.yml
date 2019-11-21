@@ -1,5 +1,6 @@
 language: r
 cache: packages
+warnings_are_errors: false
 install:
   - Rscript -e 'install.packages(c("devtools","roxygen2","testthat","httr","leaflet","rjson","jsonlite","geojsonio"));devtools::install_deps("StreetMaps")'
 script:
