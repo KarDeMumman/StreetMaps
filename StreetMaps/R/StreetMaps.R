@@ -38,7 +38,7 @@ Maps_api <- function(dataset) {
   bin <- content(resp, "raw")
   writeBin(bin, "data.geojson")
   data <- geojsonio::geojson_read("data.geojson", what = "sp")
-  
+  if(file.exists("data.geojson")) invisible(file.remove("data.geojson"))
   map <- leaflet(data)
   map <- addTiles(map)
   map <- setView(map, lng = 18.961619, lat = 58.298584, zoom = 3)
