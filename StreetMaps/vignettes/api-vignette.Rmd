@@ -1,0 +1,57 @@
+---
+title: "API-vignette"
+author: "Sarah Walid Alsaadi, Nastaran Meftahi"
+date: "11/21/2019"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{API-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Then Map API wrapper
+
+Thenmap is a repository for historical, current and future borders. The current R package wraps the Thenmap API in order to retrieve border data for different datasets and years that the user can specify.
+
+The dataset can be one of the following:
+
+* fi-8: Finnish municipalities
+* ch-8: Swiss municipalities
+* dk-7: Danish municipalities
+* se-7: Swedish municipalities
+* gl-7: Municipalities of Greenland
+* us-4: US states 
+* world-2: World countries
+
+The year for the data to be retrieved can be in the range 2010-present.
+
+## Maps_api function
+
+The Maps_api function uses the Thenmap API in order to retrieve GeoJSON data for the borders of the dataset/year specified by the user.
+
+The function returns a structure containing:
+
+* content: The parsed content of the request to the Thenmap API
+* spdata: The border data in SP format
+* path: The path for the dataset retrieved from Thenmap API
+* response: The response received from Thenmap API
+
+## Examples
+
+The package function can be run with or without specifying the year (default is 2010):
+
+* result <- Maps_api("us-4"): The call will retrieve the US state borders as of 2010
+* result <- Maps_api("se-7, 2015"): The call will retrieve the borders of the Swedish municipalities as of 2015
+
+## Display map data
+
+The retrieved data can be displayed, for example using the leaflet:
+
+map <- leaflet()
+map <- addTiles(map)
+map <- setView(map, lng = 18.961619, lat = 58.298584, zoom = 2)
+map <- addPolygons(map, data = result$spdata)
