@@ -3,17 +3,18 @@
 #library(rjson)
 #library(jsonlite)
 
-#' Draw the municipality boundaries
-#' @param dataset one of the following (fi-8, ch-8, no-4, no-7, dk-4, se-4, se-7, us-4, gl-7)
+#' Retrieve the municipality/country boundaries from the year specified (default 2010)
+#' @param dataset one of the following (fi-8, ch-8, dk-7, se-7, us-4, gl-7, world-2)
+#' @param year the year for the data to be retrieved (2010-present)
 #'
 #' @return The object of class Maps_api.
 #' @examples
 #' \dontrun{
-#' Maps_api("se-4")
-#' Maps_api("se-7")}
+#' Maps_api("us-4")
+#' Maps_api("se-7, 2015")}
 
-Maps_api <- function(dataset) {
-  path<-sprintf("/v2/%s/geo/2000", dataset)
+Maps_api <- function(dataset, year=2010) {
+  path<-sprintf("/v2/%s/geo/%d", dataset, year)
   url <- modify_url("http://api.thenmap.net", path = path)
   ua <- user_agent("http://github.com/KarDeMumman/StreetMaps")
   resp<-GET(url,ua)
@@ -39,10 +40,11 @@ Maps_api <- function(dataset) {
   writeBin(bin, "data.geojson")
   data <- geojsonio::geojson_read("data.geojson", what = "sp")
   if(file.exists("data.geojson")) invisible(file.remove("data.geojson"))
-  map <- leaflet(data)
-  map <- addTiles(map)
-  map <- setView(map, lng = 18.961619, lat = 58.298584, zoom = 3)
-  map <- addPolygons(map)
+  
+  #map <- leaflet(data)
+  #map <- addTiles(map)
+  #map <- setView(map, lng = 18.961619, lat = 58.298584, zoom = 3)
+  #map <- addPolygons(map)
   #map
   #map <- addGeoJSON(map, parsed)
   
@@ -51,8 +53,7 @@ Maps_api <- function(dataset) {
       content = parsed,
       spdata = data,
       path = path,
-      response = resp,
-      map = map
+      response = resp
     ),
     class = "Maps_api"
   )

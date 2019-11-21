@@ -2,21 +2,23 @@
 % Please edit documentation in R/StreetMaps.R
 \name{Maps_api}
 \alias{Maps_api}
-\title{Draw the municipality boundaries}
+\title{Retrieve the municipality/country boundaries from the year specified (default 2010)}
 \usage{
-Maps_api(dataset)
+Maps_api(dataset, year = 2010)
 }
 \arguments{
-\item{dataset}{one of the following (fi-8, ch-8, no-4, no-7, dk-4, se-4, se-7, us-4, gl-7,world-2)}
+\item{dataset}{one of the following (fi-8, ch-8, dk-7, se-7, us-4, gl-7, world-2)}
+
+\item{year}{the year for the data to be retrieved (2010-present)}
 }
 \value{
 The object of class Maps_api.
 }
 \description{
-Draw the municipality boundaries
+Retrieve the municipality/country boundaries from the year specified (default 2010)
 }
 \examples{
 \dontrun{
-Maps_api("se-4")
-Maps_api("se-7")}
+Maps_api("us-4")
+Maps_api("se-7, 2015")}
 }
