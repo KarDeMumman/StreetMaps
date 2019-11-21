@@ -4,7 +4,7 @@
 #library(jsonlite)
 
 #' Draw the municipality boundaries
-#' @param dataset one of the following (fi-8, ch-8, no-4, no-7, dk-4, se-4, se-7, us-4, gl-7,world-2)
+#' @param dataset one of the following (fi-8, ch-8, no-4, no-7, dk-4, se-4, se-7, us-4, gl-7)
 #'
 #' @return The object of class Maps_api.
 #' @examples
@@ -35,14 +35,21 @@ Maps_api <- function(dataset) {
     )
   }
   
-  map <- leaflet()
+  bin <- content(resp, "raw")
+  writeBin(bin, "data.geojson")
+  data <- geojsonio::geojson_read("data.geojson", what = "sp")
+  
+  map <- leaflet(data)
   map <- addTiles(map)
-  map <- setView(map, lng = 18.961619, lat = 58.298584, zoom = 4)
-  map <- addGeoJSON(map, parsed)
+  map <- setView(map, lng = 18.961619, lat = 58.298584, zoom = 3)
+  map <- addPolygons(map)
+  #map
+  #map <- addGeoJSON(map, parsed)
   
   structure(
     list(
       content = parsed,
+      spdata = data,
       path = path,
       response = resp,
       map = map
