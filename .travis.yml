@@ -8,6 +8,6 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y libudunits2-dev libprotobuf-dev libnode-dev libjq-dev libgdal-dev protobuf-compiler gdal-bin proj-bin libgeos-dev
 install:
-  - Rscript -e 'install.packages(c("devtools","roxygen2","testthat","httr","jsonlite","geojsonio"));devtools::install_deps("StreetMaps")'
+  - Rscript -e 'install.packages(c("devtools","roxygen2", "testthat", "knitr", "rmarkdown", "httr","jsonlite","geojsonio"));devtools::install_deps("StreetMaps")'
 script:
   - Rscript -e 'devtools::check("StreetMaps")'
