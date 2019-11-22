@@ -7,7 +7,7 @@ Author: Sarah Alsaadi and Nastaran Meftahi
 Maintainer: <sarah.walid.alsaadi@liu.se>, <nasme581@ad.liu.se>
 Description: The current R package wraps the Thenmap API in order to retrieve border data for different datasets and years that the user can specify.
 License: MIT License
-Imports: geojsonio, httr, rjson, jsonlite
+Imports: geojsonio, httr, jsonlite
 Suggests: 
     knitr,
     rmarkdown,
