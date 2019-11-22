@@ -4,6 +4,12 @@ warnings_are_errors: false
 repos: 
   CRAN: https://cran.rstudio.com
   rforge: http://R-Forge.R-project.org
+addons:
+   apt:
+     packages:
+       - gdal-bin
+       - libgdal1-dev
+       - libproj-dev
 install:
   - Rscript -e 'install.packages(c("devtools","roxygen2","testthat","httr","jsonlite","geojsonio"));devtools::install_deps("StreetMaps")'
 script:
