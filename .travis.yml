@@ -11,6 +11,7 @@ addons:
        - libgdal1-dev
        - libproj-dev
        - libv8-dev
+       - libjq-dev
 install:
   - Rscript -e 'install.packages(c("devtools","roxygen2","testthat","httr","jsonlite","geojsonio"));devtools::install_deps("StreetMaps")'
 script:
