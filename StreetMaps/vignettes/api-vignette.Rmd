@@ -49,9 +49,15 @@ The package function can be run with or without specifying the year (default is 
 
 ## Display map data
 
-The retrieved data can be displayed, for example using the leaflet:
+The retrieved data can be displayed, for example using leaflet:
+
+library(leaflet)
 
 map <- leaflet()
+
 map <- addTiles(map)
-map <- setView(map, lng = 18.961619, lat = 58.298584, zoom = 2)
+
 map <- addPolygons(map, data = result$spdata)
+
+map
+

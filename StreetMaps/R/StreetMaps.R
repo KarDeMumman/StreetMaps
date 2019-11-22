@@ -15,20 +15,20 @@
 
 Maps_api <- function(dataset, year=2010) {
   path<-sprintf("/v2/%s/geo/%s", dataset, year)
-  url <- modify_url("http://api.thenmap.net", path = path)
-  ua <- user_agent("http://github.com/KarDeMumman/StreetMaps")
-  resp<-GET(url,ua)
-  if (http_type(resp) != "application/json") {
+  url <- httr::modify_url("http://api.thenmap.net", path = path)
+  ua <- httr::user_agent("http://github.com/KarDeMumman/StreetMaps")
+  resp <- httr::GET(url,ua)
+  if (httr::http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
   
-  parsed <- fromJSON(content(resp, "text"))
+  parsed <- jsonlite::fromJSON(httr::content(resp, "text"))
   
-  if (http_error(resp)) {
+  if (httr::http_error(resp)) {
     stop(
       sprintf(
         "Thenmap API request failed [%s]\n%s\n<%s>", 
-        status_code(resp),
+        httr::status_code(resp),
         parsed$message,
         parsed$documentation_url
       ),
@@ -36,7 +36,7 @@ Maps_api <- function(dataset, year=2010) {
     )
   }
   
-  bin <- content(resp, "raw")
+  bin <- httr::content(resp, "raw")
   writeBin(bin, "data.geojson")
   data <- geojsonio::geojson_read("data.geojson", what = "sp")
   if(file.exists("data.geojson")) invisible(file.remove("data.geojson"))

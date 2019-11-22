@@ -1,11 +1,11 @@
 Package: StreetMaps
 Type: Package
-Title: What the package does (short line)
+Title: Thenmap API wrapper package
 Version: 1.0
 Date: 2019-10-02
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Author: Sarah Alsaadi and Nastaran Meftahi
+Maintainer: <sarah.walid.alsaadi@liu.se>, <nasme581@ad.liu.se>
+Description: The current R package wraps the Thenmap API in order to retrieve border data for different datasets and years that the user can specify.
 License: MIT License
 Imports: geojsonio, httr, rjson, jsonlite
 Suggests: 
